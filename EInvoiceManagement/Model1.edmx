@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InvoiceProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InvoiceProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Invoices">
           <Key>
             <PropertyRef Name="Oid" />
@@ -15,6 +15,26 @@
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="Total" Type="numeric" Precision="18" Scale="2" />
           <Property Name="ProductQty" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InvoiceProjectDB.dbo.InvoiceTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InvoiceTable">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="UnitPrice" />
+            <PropertyRef Name="ItemQuantity" />
+            <PropertyRef Name="ItemTotalPrice" />
+            <PropertyRef Name="InvoiceTotalPrice" />
+            <PropertyRef Name="DateCreated" />
+          </Key>
+          <Property Name="InvoiceID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UnitPrice" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemQuantity" Type="int" Nullable="false" />
+          <Property Name="ItemTotalPrice" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InvoiceTotalPrice" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreated" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Members">
           <Key>
@@ -38,6 +58,25 @@
           <Property Name="UnitPrice" Type="numeric" Precision="18" Scale="2" />
           <Property Name="QtyInStock" Type="int" />
           <Property Name="Sold" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InvoiceProjectDB.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Oid" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserType" />
+          </Key>
+          <Property Name="Oid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Invoices_Members">
           <End Role="Members" Type="Self.Members" Multiplicity="1" />
@@ -67,6 +106,29 @@
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceTable" EntityType="Self.InvoiceTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InvoiceTable].[InvoiceID] AS [InvoiceID], 
+    [InvoiceTable].[ProductName] AS [ProductName], 
+    [InvoiceTable].[UnitPrice] AS [UnitPrice], 
+    [InvoiceTable].[ItemQuantity] AS [ItemQuantity], 
+    [InvoiceTable].[ItemTotalPrice] AS [ItemTotalPrice], 
+    [InvoiceTable].[InvoiceTotalPrice] AS [InvoiceTotalPrice], 
+    [InvoiceTable].[DateCreated] AS [DateCreated]
+    FROM [dbo].[InvoiceTable] AS [InvoiceTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Users].[Oid] AS [Oid], 
+    [Users].[FirstName] AS [FirstName], 
+    [Users].[LastName] AS [LastName], 
+    [Users].[Contact] AS [Contact], 
+    [Users].[Email] AS [Email], 
+    [Users].[UserName] AS [UserName], 
+    [Users].[Password] AS [Password], 
+    [Users].[UserType] AS [UserType]
+    FROM [dbo].[Users] AS [Users]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Invoices_Members" Association="Self.FK_Invoices_Members">
             <End Role="Members" EntitySet="Members" />
             <End Role="Invoices" EntitySet="Invoices" />
@@ -76,8 +138,7 @@
             <End Role="Invoices" EntitySet="Invoices" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InvoiceProjectDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -155,7 +216,44 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Invoices" EntitySet="Invoices" />
           </AssociationSet>
+          <EntitySet Name="InvoiceTables" EntityType="InvoiceProjectDBModel.InvoiceTable" />
+          <EntitySet Name="Users" EntityType="InvoiceProjectDBModel.User" />
         </EntityContainer>
+        <EntityType Name="InvoiceTable">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="UnitPrice" />
+            <PropertyRef Name="ItemQuantity" />
+            <PropertyRef Name="ItemTotalPrice" />
+            <PropertyRef Name="InvoiceTotalPrice" />
+            <PropertyRef Name="DateCreated" />
+          </Key>
+          <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ItemQuantity" Type="Int32" Nullable="false" />
+          <Property Name="ItemTotalPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceTotalPrice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Oid" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserType" />
+          </Key>
+          <Property Name="Oid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -196,6 +294,33 @@
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="QtyInStock" ColumnName="QtyInStock" />
                 <ScalarProperty Name="Sold" ColumnName="Sold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceTables">
+            <EntityTypeMapping TypeName="InvoiceProjectDBModel.InvoiceTable">
+              <MappingFragment StoreEntitySet="InvoiceTable">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="InvoiceTotalPrice" ColumnName="InvoiceTotalPrice" />
+                <ScalarProperty Name="ItemTotalPrice" ColumnName="ItemTotalPrice" />
+                <ScalarProperty Name="ItemQuantity" ColumnName="ItemQuantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="InvoiceProjectDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Oid" ColumnName="Oid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
