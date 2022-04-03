@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="InvoiceProjectDBModel.Product" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="InvoiceProjectDBModel.FK_Invoices_Members" ManuallyRouted="false" />
         <AssociationConnector Association="InvoiceProjectDBModel.FK_Invoices_Products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InvoiceProjectDBModel.InvoiceTable" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="InvoiceProjectDBModel.User" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
