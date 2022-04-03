@@ -63,7 +63,7 @@
                                         <asp:ListItem Text="Banana" Value="banana"/>
                                         <asp:ListItem Text="Apple" Value="apple"/>
                                         <asp:ListItem Text="Orange" Value="orange"/>
-                                        <asp:ListItem Text="Pineapple" Value="orange"/>
+                                        <asp:ListItem Text="Pinaple" Value="pinaple"/>
                                     </asp:DropDownList>
                                 </div>
                             </div>

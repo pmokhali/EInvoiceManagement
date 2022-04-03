@@ -192,6 +192,13 @@ namespace EInvoiceManagement
                             };
 
                             context.Invoice_Table.Add(invoice);
+
+                            if(productname == "Apple")
+                            {
+                                var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
+                                var itemsRemaining = itemsInStock - int.Parse(quantity);
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                            }
                             //context.SaveChanges();
 
                         }
@@ -229,6 +236,43 @@ namespace EInvoiceManagement
                             };
 
                             context.Invoice_Table.Add(invoice);
+
+                            if (productname == "Apple")
+                            {
+                                var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
+                                var itemsRemaining = itemsInStock - int.Parse(quantity);
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                            }
+                            else if(productname == "Banana")
+                            {
+                                var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
+                                var itemsRemaining = itemsInStock - int.Parse(quantity);
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                            }
+                            else if (productname == "Pear")
+                            {
+                                var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
+                                var itemsRemaining = itemsInStock - int.Parse(quantity);
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                            }
+                            else if (productname == "Peach")
+                            {
+                                var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
+                                var itemsRemaining = itemsInStock - int.Parse(quantity);
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                            }
+                            else if (productname == "Orange")
+                            {
+                                var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
+                                var itemsRemaining = itemsInStock - int.Parse(quantity);
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                            }
+                            else if (productname == "Pinaple")
+                            {
+                                var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
+                                var itemsRemaining = itemsInStock - int.Parse(quantity);
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                            }
                             //context.SaveChanges();
                         }
                     }
