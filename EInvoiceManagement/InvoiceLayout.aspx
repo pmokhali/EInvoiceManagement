@@ -32,23 +32,27 @@
                                 <hr />
                             </div>
                         </div>
+                                                
+                        <br />
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <asp:TextBox CssClass="form-control" ID="txtUsername" runat="server" placeholder="User Name"></asp:TextBox>
+                                    <asp:label runat="server">ProductList</asp:label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <asp:label runat="server">Unit Price</asp:label>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <asp:TextBox CssClass="form-control" ID="txtDate" runat="server" placeholder="Date" TextMode="DateTimeLocal"></asp:TextBox>
+                                    <asp:label runat="server">Quanitiy</asp:label>
                                 </div>
                             </div>
                         </div>
-
-                        <br />
-
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -62,7 +66,6 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <asp:TextBox CssClass="form-control" ID="txtPrice" runat="server" placeholder="Unit Price" TextMode="Number"></asp:TextBox>
@@ -121,12 +124,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h5>From:</h5>
+                                    <h5>Created by:</h5>
                                     <address>
-                                        <strong>Phethiso</strong><br>
-                                        Sienna<br>
-                                        Burgundy<br>
-                                        <abbr title="Phone">P:</abbr> (123) 601-4590
+                                        <asp:label id="lblUser" runat="server" Font-Bold="True"></asp:label> <br>
                                     </address>
                                 </div>
 
@@ -140,70 +140,42 @@
                                         <abbr title="Phone">Phone:</abbr> 021 551 5307
                                     </address>
                                     <p>
-                                        <span><strong>Invoice Date:</strong> Marh 18, 2014</span><br>
+                                        <span id="spDate"><strong>Invoice Date: </strong><asp:label id="lblDate" runat="server"></asp:label></span><br>
                                     </p>
+                                    
                                 </div>
                             </div>
 
-                            <%--<div class="table-responsive m-t">--%>
-                                <%--<table class="table invoice-table" runat="server" id="tblInvoice" >
-                                    <thead>
-                                    <tr>
-                                        <th>Item List</th>
-                                        <th>Quantity</th>
-                                        <th>Unit Price</th>
-                                        <th>Total Price</th>
-                                    </tr>
-                                    </thead>
-                                </table>--%>
-
-                            <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:InvoiceProjectDBConnectionString %>" SelectCommand="SELECT Products.ProductName, Members.Username, Invoices.DateCreated, Invoices.Total, Invoices.ProductQty
-FROM Invoices
-INNER JOIN Products ON Products.Oid=Invoices.ProductID 
-INNER JOIN Members on Members.Oid=Invoices.UserID Where "></asp:SqlDataSource>--%>
+                            
                             <div class="col">
-                                <%--<asp:GridView class="table table-striped" BorderStyle="None" GridLines="None" ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1"
-                                    OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="OnRowDataBound">
-                                    <Columns>
-                                        <asp:BoundField DataField="ProductName" HeaderText="Product Name" SortExpression="ProductName" />
-                                        <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" SortExpression="DateCreated" />
-                                        <asp:BoundField DataField="ProductQty" HeaderText="ProductQty" SortExpression="ProductQty" />
-                                        <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" />
-                                        
-                                    </Columns>
-                                </asp:GridView>--%>
-
+                               
                                 <asp:GridView id="GridView1" class="table table-striped" BorderStyle="None" GridLines="None" runat="server">
                                     
                                 </asp:GridView>
                             </div>
-
-                            
-                            <%--</div><!-- /table-responsive -->--%>
-
-                            <table class="table invoice-total">
-                                <tbody>
-                                <tr>
-                                    <td><strong>Sub Total :</strong></td>
-                                    <td>$1026.00</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>TAX :</strong></td>
-                                    <td>$235.98</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>TOTAL :</strong></td>
-                                    <td>$1261.98</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="text-right">
-                                <button class="btn btn-primary"><i class="fa fa-dollar"></i> Make A Payment</button>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-7 text-right">
+                                    
+                                </div>
+                                <div class="col-sm-3 text-right">
+                                    <asp:Label runat="server" Text="TOTAL :" Font-Bold="True" style="text-align:right"></asp:Label>
+                                </div>
+                                <div class="col-sm-2 text-right">
+                                    <asp:Label id="lblTotal" runat="server" Text=""></asp:Label>
+                                </div>
                             </div>
-
-                            <div class="well m-t"><strong>Comments</strong>
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-12 text-right">
+                                    <button class="btn btn-primary w-100 d-block btn-md"><i class="fa fa-save"></i> Save Invoice</button>
+                                </div>
                             </div>
+                                                                                    
+                            <%--<div class="text-right">
+                                <button class="btn btn-primary"><i class="fa fa-save"></i> Save Invoice</button>
+                            </div>--%>
+
                         </div>
                             
                     </div>

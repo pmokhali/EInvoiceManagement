@@ -13,9 +13,9 @@ namespace EInvoiceManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblDate.Text = DateTime.Today.ToLongDateString();
+            lblUser.Text = Session["username"].ToString();
         }
-        int rowcount = 0;
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -26,7 +26,6 @@ namespace EInvoiceManagement
 
                 // Add Columns to datatablse
                 dt.Columns.Add(new DataColumn("ProductName")); //'ColumnName1' represents name of datafield in grid
-                dt.Columns.Add(new DataColumn("DateCreated"));
                 dt.Columns.Add(new DataColumn("UnitPrice"));
                 dt.Columns.Add(new DataColumn("ProductQty"));
                 dt.Columns.Add(new DataColumn("ItemTotal"));
@@ -34,41 +33,42 @@ namespace EInvoiceManagement
                 var price = double.Parse(txtPrice.Text);
                 var qty = int.Parse(txtQuantity.Text);
                 var itemTotal = price * qty;
-
+                var totalprice = 0.0;
                 // Add empty row first to DataTable to show as first row in gridview
                 dr = dt.NewRow();
                 dr["ProductName"] = productList.SelectedItem.Text;
-                dr["DateCreated"] = txtDate.Text;
                 dr["UnitPrice"] = txtPrice.Text;
                 dr["ProductQty"] = txtQuantity.Text;
                 dr["ItemTotal"] = itemTotal.ToString();
                 dt.Rows.Add(dr);
+                totalprice = itemTotal;
 
                 // Get each row from gridview and add it to DataTable
                 foreach (GridViewRow gvr in GridView1.Rows)
                 {
                     var productname = gvr.Cells[0].Text;
-                    var datecreated = gvr.Cells[1].Text;
-                    var unitprice = gvr.Cells[2].Text;
-                    var quantity = gvr.Cells[3].Text;
-                    var total = gvr.Cells[4].Text;
+                    var unitprice = gvr.Cells[1].Text;
+                    var quantity = gvr.Cells[2].Text;
+                    var total = gvr.Cells[3].Text;
 
                     dr = dt.NewRow();
                         
                     dr["ProductName"] = productname;
-                    dr["DateCreated"] = datecreated;
                     dr["UnitPrice"] = unitprice;
                     dr["ProductQty"] = quantity;
                     dr["ItemTotal"] = total;
                     dt.Rows.Add(dr);
-                    
-                    
+
+                    totalprice = totalprice + double.Parse(total);
                 
                 }
 
                 // Add DataTable back to grid
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
+
+                lblTotal.Text = totalprice.ToString();
+
             }
             catch (Exception ex)
             {
