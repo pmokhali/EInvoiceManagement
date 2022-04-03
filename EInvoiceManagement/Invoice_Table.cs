@@ -12,14 +12,15 @@ namespace EInvoiceManagement
     using System;
     using System.Collections.Generic;
     
-    public partial class InvoiceTable
+    public partial class Invoice_Table
     {
+        public int Oid { get; set; }
         public string InvoiceID { get; set; }
-        public string ProductName { get; set; }
         public string UnitPrice { get; set; }
         public int ItemQuantity { get; set; }
         public string ItemTotalPrice { get; set; }
         public string InvoiceTotalPrice { get; set; }
         public string DateCreated { get; set; }
+        public string ProductName { get; set; }
     }
 }

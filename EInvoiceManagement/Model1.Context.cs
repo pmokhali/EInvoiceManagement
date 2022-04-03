@@ -28,7 +28,7 @@ namespace EInvoiceManagement
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<InvoiceTable> InvoiceTables { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Invoice_Table> Invoice_Table { get; set; }
     }
 }

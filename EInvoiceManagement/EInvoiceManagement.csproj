@@ -2190,7 +2190,7 @@
     <Compile Include="InvoiceLayout.aspx.designer.cs">
       <DependentUpon>InvoiceLayout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InvoiceTable.cs">
+    <Compile Include="Invoice_Table.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ManagerLogin.aspx.cs">

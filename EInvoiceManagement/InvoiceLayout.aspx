@@ -56,19 +56,20 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <asp:DropDownList CssClass="form-control" ID="productList" runat="server">
-                                        <asp:ListItem Text="Select Product" Value="selectProduct"/>
-                                        <asp:ListItem Text="Bread" Value="bread"/>
-                                        <asp:ListItem Text="Milk" Value="milk"/>
+                                    <asp:DropDownList CssClass="form-control" ID="productList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="productList_SelectedIndexChanged">
+                                        <asp:ListItem Text="Select Item" Value="selectItem"/>
+                                        <asp:ListItem Text="Pear" Value="pear"/>
+                                        <asp:ListItem Text="Peach" Value="peach"/>
                                         <asp:ListItem Text="Banana" Value="banana"/>
                                         <asp:ListItem Text="Apple" Value="apple"/>
-                                        <asp:ListItem Text="Cereal" Value="cereal"/>
+                                        <asp:ListItem Text="Orange" Value="orange"/>
+                                        <asp:ListItem Text="Pineapple" Value="orange"/>
                                     </asp:DropDownList>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <asp:TextBox CssClass="form-control" ID="txtPrice" runat="server" placeholder="Unit Price" TextMode="Number"></asp:TextBox>
+                                    <asp:TextBox CssClass="form-control" ID="txtPrice" runat="server" placeholder="Unit Price" Enabled="False"></asp:TextBox>
                                 </div>
                             </div>
                             
@@ -168,7 +169,7 @@
                             <br />
                             <div class="row">
                                 <div class="col-sm-12 text-right">
-                                    <button class="btn btn-primary w-100 d-block btn-md"><i class="fa fa-save"></i> Save Invoice</button>
+                                    <asp:button id="btnSaveInvoice" class="btn btn-primary w-100 d-block btn-md" runat="server" OnClick="btnSaveInvoice_Click" Text="Save Invoice"></asp:button>
                                 </div>
                             </div>
                                                                                     

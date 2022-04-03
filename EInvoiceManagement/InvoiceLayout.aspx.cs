@@ -154,5 +154,122 @@ namespace EInvoiceManagement
 
             }
         }
+
+        protected void btnSaveInvoice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var context = new InvoiceProjectDBEntities())
+                {
+                    var idtemplate = "";
+                    var invoiceCount = context.Invoice_Table.Count();
+
+
+                    if (invoiceCount <= 0)
+                    {
+                        idtemplate = "inv_1";
+
+                        // Populate Invoice table
+                        foreach (GridViewRow gvr in GridView1.Rows)
+                        {
+                            var productname = gvr.Cells[0].Text;
+                            var unitprice = gvr.Cells[1].Text;
+                            var quantity = gvr.Cells[2].Text;
+                            var total = gvr.Cells[3].Text;
+                            var user = lblUser.Text;
+                            var invTotal = lblTotal.Text;
+                            var invDate = DateTime.Today.ToShortDateString();
+
+                            var invoice = new Invoice_Table()
+                            {
+                                InvoiceID = idtemplate,
+                                DateCreated = invDate,
+                                InvoiceTotalPrice = invTotal,
+                                ItemQuantity = int.Parse(quantity),
+                                ItemTotalPrice = total,
+                                ProductName = productname,
+                                UnitPrice = unitprice
+                            };
+
+                            context.Invoice_Table.Add(invoice);
+                            //context.SaveChanges();
+
+                        }
+
+                    }
+                    else
+                    {
+                        // Create string ID
+                        idtemplate = context.Invoice_Table.OrderByDescending(x => x.Oid).FirstOrDefault().InvoiceID;
+                        var idstringIdentifier = idtemplate.Split('_').Last();
+                        var idNum = int.Parse(idstringIdentifier);
+                        idNum++;
+                        idtemplate = "inv_" + idNum;
+
+                        // Populate Invoice table
+                        foreach (GridViewRow gvr in GridView1.Rows)
+                        {
+                            var productname = gvr.Cells[0].Text;
+                            var unitprice = gvr.Cells[1].Text;
+                            var quantity = gvr.Cells[2].Text;
+                            var total = gvr.Cells[3].Text;
+                            var user = lblUser.Text;
+                            var invTotal = lblTotal.Text;
+                            var invDate = DateTime.Today.ToShortDateString();
+
+                            var invoice = new Invoice_Table()
+                            {
+                                InvoiceID = idtemplate,
+                                DateCreated = invDate,
+                                InvoiceTotalPrice = invTotal,
+                                ItemQuantity = int.Parse(quantity),
+                                ItemTotalPrice = total,
+                                ProductName = productname,
+                                UnitPrice = unitprice
+                            };
+
+                            context.Invoice_Table.Add(invoice);
+                            //context.SaveChanges();
+                        }
+                    }
+
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
+        }
+
+        protected void productList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(productList.SelectedValue == "pear")
+            {
+                txtPrice.Text = "4.50";
+            }
+            else if (productList.SelectedValue == "peach")
+            {
+                txtPrice.Text = "1.50";
+            }
+            else if (productList.SelectedValue == "banana")
+            {
+                txtPrice.Text = "3.00";
+            }
+            else if (productList.SelectedValue == "apple")
+            {
+                txtPrice.Text = "3.50";
+            }
+            else if (productList.SelectedValue == "orange")
+            {
+                txtPrice.Text = "4.00";
+            }
+            else if (productList.SelectedValue == "pineaple")
+            {
+                txtPrice.Text = "10.00";
+            }
+
+        }
     }
 }
