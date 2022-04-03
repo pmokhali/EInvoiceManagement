@@ -88,7 +88,7 @@
                             <div class="col-4">
                                 <center>
                                     <div class="form-group">
-                                        <asp:Button class="btn btn-success w-100 d-block btn-md" ID="btnAdd" runat="server" Text="Add" onclick="AddRow();" />
+                                        <asp:Button class="btn btn-success w-100 d-block btn-md" ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click"  />
                                     </div>
                                 </center>
                             </div>
@@ -123,32 +123,30 @@
                                 <div class="col-sm-6">
                                     <h5>From:</h5>
                                     <address>
-                                        <strong>Inspinia, Inc.</strong><br>
-                                        106 Jorg Avenu, 600/10<br>
-                                        Chicago, VT 32456<br>
+                                        <strong>Phethiso</strong><br>
+                                        Sienna<br>
+                                        Burgundy<br>
                                         <abbr title="Phone">P:</abbr> (123) 601-4590
                                     </address>
                                 </div>
 
                                 <div class="col-sm-6 text-right">
-                                    <h4>Invoice No.</h4>
-                                    <h4 class="text-navy">INV-000567F7-00</h4>
-                                    <span>To:</span>
+                                    <h4>Geniii</h4>
+                                    <h4 class="text-navy">AI & Analytics</h4>
                                     <address>
-                                        <strong>Corporate, Inc.</strong><br>
-                                        112 Street Avenu, 1080<br>
-                                        Miami, CT 445611<br>
-                                        <abbr title="Phone">P:</abbr> (120) 9000-4321
+                                        F1 Vesta, The Forum, N Bank Ln, <br>
+                                        Century City, <br >
+                                        Cape Town, 7441<br>
+                                        <abbr title="Phone">Phone:</abbr> 021 551 5307
                                     </address>
                                     <p>
                                         <span><strong>Invoice Date:</strong> Marh 18, 2014</span><br>
-                                        <span><strong>Due Date:</strong> March 24, 2014</span>
                                     </p>
                                 </div>
                             </div>
 
                             <%--<div class="table-responsive m-t">--%>
-                                <table class="table invoice-table" runat="server" id="tblInvoice" >
+                                <%--<table class="table invoice-table" runat="server" id="tblInvoice" >
                                     <thead>
                                     <tr>
                                         <th>Item List</th>
@@ -157,7 +155,28 @@
                                         <th>Total Price</th>
                                     </tr>
                                     </thead>
-                                </table>
+                                </table>--%>
+
+                            <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:InvoiceProjectDBConnectionString %>" SelectCommand="SELECT Products.ProductName, Members.Username, Invoices.DateCreated, Invoices.Total, Invoices.ProductQty
+FROM Invoices
+INNER JOIN Products ON Products.Oid=Invoices.ProductID 
+INNER JOIN Members on Members.Oid=Invoices.UserID Where "></asp:SqlDataSource>--%>
+                            <div class="col">
+                                <%--<asp:GridView class="table table-striped" BorderStyle="None" GridLines="None" ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1"
+                                    OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="OnRowDataBound">
+                                    <Columns>
+                                        <asp:BoundField DataField="ProductName" HeaderText="Product Name" SortExpression="ProductName" />
+                                        <asp:BoundField DataField="DateCreated" HeaderText="DateCreated" SortExpression="DateCreated" />
+                                        <asp:BoundField DataField="ProductQty" HeaderText="ProductQty" SortExpression="ProductQty" />
+                                        <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" />
+                                        
+                                    </Columns>
+                                </asp:GridView>--%>
+
+                                <asp:GridView id="GridView1" class="table table-striped" BorderStyle="None" GridLines="None" runat="server">
+                                    
+                                </asp:GridView>
+                            </div>
 
                             
                             <%--</div><!-- /table-responsive -->--%>

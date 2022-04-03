@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Data;
 
 namespace EInvoiceManagement
 {
@@ -20,44 +21,54 @@ namespace EInvoiceManagement
             try
             {
 
-                HtmlTableRow row = new HtmlTableRow();
+                DataTable dt = new DataTable();
+                DataRow dr;
 
-                HtmlTableCell product = new HtmlTableCell();
-                var lblproduct = new Label();
-                lblproduct.Text = productList.SelectedItem.Text;
-                product.Controls.Add(lblproduct);
-                //add cell to row
-                row.Cells.Add(product);
+                // Add Columns to datatablse
+                dt.Columns.Add(new DataColumn("ProductName")); //'ColumnName1' represents name of datafield in grid
+                dt.Columns.Add(new DataColumn("DateCreated"));
+                dt.Columns.Add(new DataColumn("UnitPrice"));
+                dt.Columns.Add(new DataColumn("ProductQty"));
+                dt.Columns.Add(new DataColumn("ItemTotal"));
 
-                HtmlTableCell qty = new HtmlTableCell();
-                var lblqty = new Label();
-                lblqty.Text = txtQuantity.Text;
-                qty.Controls.Add(lblqty);
-                //add cell to row
-                row.Cells.Add(qty);
+                var price = double.Parse(txtPrice.Text);
+                var qty = int.Parse(txtQuantity.Text);
+                var itemTotal = price * qty;
 
-                HtmlTableCell price = new HtmlTableCell();
-                var lblprice = new Label();
-                lblprice.Text = txtPrice.Text;
-                price.Controls.Add(lblprice);
-                //add cell to row
-                row.Cells.Add(price);
+                // Add empty row first to DataTable to show as first row in gridview
+                dr = dt.NewRow();
+                dr["ProductName"] = productList.SelectedItem.Text;
+                dr["DateCreated"] = txtDate.Text;
+                dr["UnitPrice"] = txtPrice.Text;
+                dr["ProductQty"] = txtQuantity.Text;
+                dr["ItemTotal"] = itemTotal.ToString();
+                dt.Rows.Add(dr);
 
-                HtmlTableCell total = new HtmlTableCell();
-                var lbltotal = new Label();
-                var pprice = double.Parse(txtPrice.Text);
-                var quantity = int.Parse(txtQuantity.Text);
-                var totalPrice = pprice * quantity;
-                lbltotal.Text = totalPrice.ToString();
-                total.Controls.Add(lbltotal);
-                //add cell to row
-                row.Cells.Add(total);
+                // Get each row from gridview and add it to DataTable
+                foreach (GridViewRow gvr in GridView1.Rows)
+                {
+                    var productname = gvr.Cells[0].Text;
+                    var datecreated = gvr.Cells[1].Text;
+                    var unitprice = gvr.Cells[2].Text;
+                    var quantity = gvr.Cells[3].Text;
+                    var total = gvr.Cells[4].Text;
+
+                    dr = dt.NewRow();
+                        
+                    dr["ProductName"] = productname;
+                    dr["DateCreated"] = datecreated;
+                    dr["UnitPrice"] = unitprice;
+                    dr["ProductQty"] = quantity;
+                    dr["ItemTotal"] = total;
+                    dt.Rows.Add(dr);
+                    
+                    
                 
-                //add row to dt
-                var count = tblInvoice.Rows.Count;
-                tblInvoice.Rows.Add(row);
-                //ViewState["CurrentTable"] = tblInvoice;
-                tblInvoice.DataBind();
+                }
+
+                // Add DataTable back to grid
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
             }
             catch (Exception ex)
             {

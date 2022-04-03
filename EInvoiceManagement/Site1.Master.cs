@@ -67,7 +67,7 @@ namespace EInvoiceManagement
 
         protected void CreateInvoices_Click(object sender, EventArgs e)
         {
-            Response.Redirect("InvoiceIssuing.aspx");
+            Response.Redirect("InvoiceLayout.aspx");
         }
 
         protected void AdminLogin_Click(object sender, EventArgs e)

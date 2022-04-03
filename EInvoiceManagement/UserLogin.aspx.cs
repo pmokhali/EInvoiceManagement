@@ -34,7 +34,7 @@ namespace EInvoiceManagement
                             result = true;
                             Session["username"] = txtUsername.Text;
                             Session["role"] = "user";
-                            Response.Redirect("~/InvoiceIssuing.aspx");
+                            Response.Redirect("~/InvoiceLayout.aspx");
                         }
                         else
                         {
