@@ -50,7 +50,7 @@ namespace EInvoiceManagement
                 if (result)
                 {
                     Response.Write("<script>alert('Welcome  " + memberName + "!');</script>");
-                    Response.Redirect("~/InvoiceLayout.aspx");
+                    Response.Redirect("~/Reports.aspx");
 
                 }
                 else

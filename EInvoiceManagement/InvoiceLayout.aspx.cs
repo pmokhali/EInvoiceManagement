@@ -242,36 +242,48 @@ namespace EInvoiceManagement
                                 var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
                                 var itemsRemaining = itemsInStock - int.Parse(quantity);
                                 context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                                var sold = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold;
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold = sold + int.Parse(quantity);
                             }
                             else if(productname == "Banana")
                             {
                                 var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
                                 var itemsRemaining = itemsInStock - int.Parse(quantity);
                                 context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                                var sold = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold;
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold = sold + int.Parse(quantity);
                             }
                             else if (productname == "Pear")
                             {
                                 var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
                                 var itemsRemaining = itemsInStock - int.Parse(quantity);
                                 context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                                var sold = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold;
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold = sold + int.Parse(quantity);
                             }
                             else if (productname == "Peach")
                             {
                                 var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
                                 var itemsRemaining = itemsInStock - int.Parse(quantity);
                                 context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                                var sold = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold;
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold = sold + int.Parse(quantity);
                             }
                             else if (productname == "Orange")
                             {
                                 var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
                                 var itemsRemaining = itemsInStock - int.Parse(quantity);
                                 context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                                var sold = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold;
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold = sold + int.Parse(quantity);
                             }
                             else if (productname == "Pinaple")
                             {
                                 var itemsInStock = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock;
                                 var itemsRemaining = itemsInStock - int.Parse(quantity);
                                 context.Products.Where(x => x.ProductName == productname).FirstOrDefault().QtyInStock = itemsRemaining;
+                                var sold = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold;
+                                context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold = sold + int.Parse(quantity);
                             }
                             //context.SaveChanges();
                         }
@@ -279,6 +291,8 @@ namespace EInvoiceManagement
 
                     context.SaveChanges();
                 }
+
+                Alert(this, "Success", "Invoice Saved!");
             }
             catch (Exception ex)
             {
@@ -309,11 +323,22 @@ namespace EInvoiceManagement
             {
                 txtPrice.Text = "4.00";
             }
-            else if (productList.SelectedValue == "pineaple")
+            else if (productList.SelectedValue == "pinaple")
             {
                 txtPrice.Text = "10.00";
             }
 
+        }
+
+        public void Alert(Control Control, string Message, string Title = "Alert", string callback = "")
+        {
+            try
+            {
+                ScriptManager.RegisterStartupScript(Control.Page, Control.GetType(), "Script", "swal('" + Title + "','" + Message + "','success');", true);
+            }
+            catch (Exception ex)
+            {
+            }
         }
     }
 }

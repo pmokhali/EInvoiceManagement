@@ -54,7 +54,7 @@ namespace EInvoiceManagement
                     LinkButton3.Visible = true;
                     LinkButton7.Visible = true;
                     LinkButton7.Text = "Hello " + Session["username"].ToString();
-                    LinkButton4.Visible = true;
+                    LinkButton4.Visible = false;
                     LinkButton6.Visible = false;
                     LinkButton5.Visible = false;
                 }
