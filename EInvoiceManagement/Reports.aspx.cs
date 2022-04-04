@@ -55,27 +55,27 @@ namespace EInvoiceManagement
                     lblsold.Text = totalSold.ToString();
 
                     string item = "";
-                    if(bananas > 5)
+                    if(bananas < 5)
                     {
                         item = item + "Bananas, ";
                     }
-                    if (apples > 5)
+                    if (apples < 5)
                     {
                         item = item + "Apple, ";
                     }
-                    if (pears > 5)
+                    if (pears < 5)
                     {
                         item = item + "Pear, ";
                     }
-                    if (peaches > 5)
+                    if (peaches < 5)
                     {
                         item = item + "Peach, ";
                     }
-                    if (oranges > 5)
+                    if (oranges < 5)
                     {
                         item = item + "Orange, ";
                     }
-                    if (pinaples > 5)
+                    if (pinaples < 5)
                     {
                         item = item + "Pinaple ";
                     }

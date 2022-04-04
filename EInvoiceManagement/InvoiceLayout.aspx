@@ -89,27 +89,14 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col">
                                 <center>
                                     <div class="form-group">
                                         <asp:Button class="btn btn-success w-100 d-block btn-md" ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click"  />
                                     </div>
                                 </center>
                             </div>
-                            <div class="col-4">
-                                <center>
-                                    <div class="form-group">
-                                        <asp:Button class="btn btn-warning w-100 d-block btn-md" ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
-                                    </div>
-                                </center>
-                            </div>
-                            <div class="col-4">
-                                <center>
-                                    <div class="form-group">
-                                        <asp:Button class="btn btn-danger w-100 d-block btn-md" ID="btnReturn" runat="server" Text="Return" />
-                                    </div>
-                                </center>
-                            </div>
+                            
                             
                         </div>
 

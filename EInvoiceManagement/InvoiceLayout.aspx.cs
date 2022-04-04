@@ -121,40 +121,7 @@ namespace EInvoiceManagement
             //}
         }
 
-        protected void btnUpdate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //int oid = int.Parse(txtoid.Text);
-                //using (var context = new InvoiceProjectDBEntities())
-                //{
-                //    var invoice = context.Invoices.Where(x => x.Oid == oid).FirstOrDefault();
-                //    if (invoice != null)
-                //    {
-                //        var price = double.Parse(txtPrice.Text);
-                //        var quantity = int.Parse(txtQuantity.Text);
-                //        var total = price * quantity;
-                //        var productID = context.Products.Where(x => x.ProductName == productList.SelectedItem.Text).FirstOrDefault().Oid;
-                //        var userID = context.Members.Where(x => x.Username == txtUsername.Text).FirstOrDefault().Oid;
-
-                //        invoice.ProductID = productID;
-                //        invoice.ProductQty = quantity;
-                //        invoice.Total = Convert.ToDecimal(total);
-                //        invoice.UserID = userID;
-                //        invoice.DateCreated = DateTime.Parse(txtDate.Text);
-
-                //        context.SaveChanges();
-                //    }
-                //}
-                //GridView1.DataBind();
-                //Response.Redirect(Request.RawUrl);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
+        
         protected void btnSaveInvoice_Click(object sender, EventArgs e)
         {
             try

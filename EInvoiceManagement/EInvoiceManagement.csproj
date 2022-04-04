@@ -2139,6 +2139,7 @@
     <Content Include="imgs\wordpress-invoices.jpg" />
     <Content Include="InvoiceIssuing.aspx" />
     <Content Include="InvoiceLayout.aspx" />
+    <Content Include="Invoices.aspx" />
     <Content Include="js\pageControl.js" />
     <Content Include="ManagerLogin.aspx" />
     <Content Include="Model1.Context.tt">
@@ -2190,6 +2191,13 @@
     </Compile>
     <Compile Include="InvoiceLayout.aspx.designer.cs">
       <DependentUpon>InvoiceLayout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Invoices.aspx.cs">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoices.aspx.designer.cs">
+      <DependentUpon>Invoices.aspx</DependentUpon>
     </Compile>
     <Compile Include="Invoice_Table.cs">
       <DependentUpon>Model1.tt</DependentUpon>

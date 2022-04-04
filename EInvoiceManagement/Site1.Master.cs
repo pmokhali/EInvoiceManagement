@@ -17,46 +17,50 @@ namespace EInvoiceManagement
                 {
                     LinkButton1.Visible = true;
                     LinkButton2.Visible = true;
-
+                    LinkButton8.Visible = false;
                     LinkButton3.Visible = false;
                     LinkButton7.Visible = false;
                     LinkButton4.Visible = false;
+                    LinkButton9.Visible = false;
                 }
                 else if(Session["role"].Equals("user"))
                 {
                     LinkButton1.Visible = false;
                     LinkButton2.Visible = false;
-
+                    LinkButton8.Visible = false;
                     LinkButton3.Visible = true;
                     LinkButton7.Visible = true;
                     LinkButton7.Text = "Hello " + Session["username"].ToString();
                     LinkButton4.Visible = true;
                     LinkButton6.Visible = false;
                     LinkButton5.Visible = false;
+                    LinkButton9.Visible = false;
                 }
                 else if (Session["role"].Equals("admin"))
                 {
                     LinkButton1.Visible = false;
                     LinkButton2.Visible = false;
-
+                    LinkButton8.Visible = false;
                     LinkButton3.Visible = true;
                     LinkButton7.Visible = true;
                     LinkButton7.Text = "Hello " + Session["username"].ToString();
                     LinkButton4.Visible = true;
                     LinkButton6.Visible = false;
                     LinkButton5.Visible = false;
+                    LinkButton9.Visible = false;
                 }
                 else if (Session["role"].Equals("manager"))
                 {
                     LinkButton1.Visible = false;
                     LinkButton2.Visible = false;
-
+                    LinkButton8.Visible = true;
                     LinkButton3.Visible = true;
                     LinkButton7.Visible = true;
                     LinkButton7.Text = "Hello " + Session["username"].ToString();
                     LinkButton4.Visible = false;
                     LinkButton6.Visible = false;
                     LinkButton5.Visible = false;
+                    LinkButton9.Visible = true;
                 }
             }
             catch(Exception ex)
@@ -97,6 +101,16 @@ namespace EInvoiceManagement
             Session["role"] = "";
             Session["username"] = "";
             Response.Redirect("ManagerLogin.aspx");
+        }
+
+        protected void ViewReports_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Reports.aspx");
+        }
+
+        protected void Invoices_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Invoices.aspx");
         }
     }
 }
