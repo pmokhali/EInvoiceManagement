@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace EInvoiceManagement
 {
-    public partial class SignUp : System.Web.UI.Page
+    public partial class SignUp : Page
     {
         string strCon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
@@ -39,9 +33,10 @@ namespace EInvoiceManagement
 
                     context.SaveChanges();
 
-                    Response.Redirect(Request.RawUrl);
-                    
+                    ClearPage();
+
                 }
+                //Alert(this, "Success", "Saved successfully");
                 Response.Write("<script>alert('Saved successfully!');</script>");
 
             }
@@ -59,6 +54,17 @@ namespace EInvoiceManagement
             txtEmail.Text = "";
             txtUserName.Text = "";
             //ddlUserType.SelectedValue = ddlUserType.SelectedVal
+        }
+
+        public void Alert(Control Control, string Message, string Title = "Alert", string callback = "")
+        {
+            try
+            {
+                ScriptManager.RegisterStartupScript(Control.Page, Control.GetType(), "Script", "swal('" + Title + "','" + Message + "','success');", true);
+            }
+            catch (Exception ex)
+            {
+            }
         }
     }
 }

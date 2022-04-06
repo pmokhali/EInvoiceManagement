@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Data;
 
 namespace EInvoiceManagement
 {
-    public partial class InvoiceLayout : System.Web.UI.Page
+    public partial class InvoiceLayout : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -252,7 +249,6 @@ namespace EInvoiceManagement
                                 var sold = context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold;
                                 context.Products.Where(x => x.ProductName == productname).FirstOrDefault().Sold = sold + int.Parse(quantity);
                             }
-                            //context.SaveChanges();
                         }
                     }
 
